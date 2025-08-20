@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record OrganizacaoDTO(
         @NotBlank(message = "O nome é obrigatório")
-        String nome,
+        String name,
 
         @NotBlank(message = "O contato é obrigatório.")
         String contato

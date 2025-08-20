@@ -22,9 +22,9 @@ public class OrganizacaoService {
 
     public List<Organizacao> listar(String nome, String contato) {
         if (nome != null && contato != null) {
-            return repository.findByNomeContainingIgnoreCaseAndContatoContainingIgnoreCase(nome, contato);
+            return repository.findByNameContainingIgnoreCaseAndContatoContainingIgnoreCase(nome, contato);
         } else if (nome != null) {
-            return repository.findOne(nome);
+            return repository.findByNameContainingIgnoreCase(nome);
         } else if (contato != null) {
             return repository.findByContatoContainingIgnoreCase(contato);
         } else {
