@@ -19,6 +19,15 @@ public class ProjetoController {
         this.service = service;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Projeto>> listar(
+            @RequestParam(required = false) String regiao,
+            @RequestParam(required = false, name = "organizacao") String organizacaoNome
+    ) {
+        List<Projeto> projetos = service.listar(regiao, organizacaoNome);
+        return ResponseEntity.ok(projetos);
+    }
+
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody ProjetoDTO dto) {
         Optional<Projeto> projetoSalvo = service.salvar(dto);

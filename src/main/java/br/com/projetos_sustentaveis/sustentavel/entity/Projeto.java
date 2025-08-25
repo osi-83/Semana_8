@@ -18,7 +18,7 @@ public class Projeto {
     private Long id;
 
     @NotBlank(message = " Uso de energia fotovoltaica")
-    private String nome;
+    private String name;
 
     @NotBlank(message = "O uso de energias renováveis, deve ser uma " +
             "questão a ser discutida de forma mais consciente pela sociedade;")

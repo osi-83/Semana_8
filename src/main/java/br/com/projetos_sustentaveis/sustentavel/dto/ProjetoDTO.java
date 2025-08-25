@@ -5,7 +5,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 public record ProjetoDTO(
         @NotBlank(message = "O nome é obrigatório")
-        String nome,
+        String name,
 
         @NotBlank(message = "A descrição é obrigatória")
         String descricao,

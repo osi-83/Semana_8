@@ -25,7 +25,7 @@ public class ProjetoService {
         return organizacaoRepository.findById(dto.organizacaoId())
                 .map(org -> {
                     Projeto projeto = new Projeto();
-                    projeto.setNome(dto.nome());
+                    projeto.setName(dto.name());
                     projeto.setDescricao(dto.descricao());
                     projeto.setRegiao(dto.regiao());
                     projeto.setEstimativaReducaoCO2(dto.estimativaReducaoCO2());
@@ -34,8 +34,19 @@ public class ProjetoService {
                 });
     }
 
-    public List<Projeto> listarTodos() {
-        return repository.findAll();
+    //public List<Projeto> listarTodos() {
+    //    return repository.findAll();
+    //}
+    public List<Projeto> listar(String regiao, String organizacaoNome) {
+        if (regiao != null && organizacaoNome != null) {
+            return repository.findByRegiaoContainingIgnoreCaseAndOrganizacao_NameContainingIgnoreCase(regiao, organizacaoNome);
+        } else if (regiao != null) {
+            return repository.findByRegiaoContainingIgnoreCase(regiao);
+        } else if (organizacaoNome != null) {
+            return repository.findByOrganizacao_NameContainingIgnoreCase(organizacaoNome);
+        } else {
+            return repository.findAll();
+        }
     }
 
     public Optional<Projeto> buscarPorId(Long id) {
@@ -45,7 +56,7 @@ public class ProjetoService {
     public Optional<Projeto> atualizar(Long id, ProjetoDTO dto) {
         return repository.findById(id).flatMap(p ->
                 organizacaoRepository.findById(dto.organizacaoId()).map(org -> {
-                    p.setNome(dto.nome());
+                    p.setName(dto.name());
                     p.setDescricao(dto.descricao());
                     p.setRegiao(dto.regiao());
                     p.setEstimativaReducaoCO2(dto.estimativaReducaoCO2());

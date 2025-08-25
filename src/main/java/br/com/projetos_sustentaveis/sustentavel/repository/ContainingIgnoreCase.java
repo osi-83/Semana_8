@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ContainingIgnoreCase extends JpaRepository<Organizacao, Long>  {
 
-    List<Organizacao> findByNomeContainingIgnoreCase(String nome);
+    List<Organizacao> findByNameContainingIgnoreCase(String name);
 
     List<Organizacao> findByContatoContainingIgnoreCase(String contato);
 
